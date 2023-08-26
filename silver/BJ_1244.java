@@ -19,21 +19,24 @@ public class Main
 	        //남학생(1)이면 배정받은 번호의 배수 반전 
 	        if (FM == 1)
 	        {
-	            for (int j=1;j<=N;j++)
-	                if(j % number == 0)
-	                    arr[j] = (arr[j] == 1? 0 : 1);
+	            int count = 1;
+	            while(number * count <= N)
+	            {
+	                arr[number * count] ^= 1;
+	                count ++;
+	            }
 	        }
 	        else{
 	            //여학생(2)이면 배정받은 번호의 좌우구간 확인후 반전
-	            arr[number] = (arr[number] == 1? 0 : 1);
+	            arr[number] ^= 1;
 	            for(int j=1;j<=N;j++)
 	            {
 	                if (arr[number-j] != arr[number+j] || ((number-j) <1) || (number+j) >N)
 	                    break;
 	                else
 	               {
-	                   arr[number-j] = (arr[number-j] == 1? 0 : 1);
-	                   arr[number+j] = (arr[number+j] == 1? 0 : 1);
+	                   arr[number-j] ^= 1;
+	                   arr[number+j] ^= 1;
 	               }
 	            }
 	        }
